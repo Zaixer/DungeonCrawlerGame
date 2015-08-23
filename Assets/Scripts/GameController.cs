@@ -37,13 +37,13 @@ public class GameController : MonoBehaviour {
             case MoveStatus.Left:
                 foreach (var background in _backgrounds)
                 {
-                    background.MoveBackground();
+                    background.MoveBackgroundLeft();
                 }
                 break;
             case MoveStatus.Right:
                 foreach (var background in _backgrounds)
                 {
-                    background.MoveBackground();
+                    background.MoveBackgroundRight();
                 }
                 break;
             default:

@@ -2,13 +2,23 @@
 
 public class Background : MonoBehaviour
 {
-    public float moveDistance = 0.01f;
+    public float moveSpeed = 0.01f;
 
     private Renderer _renderer;
 
-    public void MoveBackground()
+    public void MoveBackgroundLeft()
     {
-        _renderer.material.mainTextureOffset = new Vector2(_renderer.material.mainTextureOffset.x + moveDistance, 0f);
+        MoveBackground(-moveSpeed);
+    }
+
+    public void MoveBackgroundRight()
+    {
+        MoveBackground(moveSpeed);
+    }
+
+    private void MoveBackground(float xDistance)
+    {
+        _renderer.material.mainTextureOffset = new Vector2(_renderer.material.mainTextureOffset.x + xDistance, 0f);
     }
 
     void Start()
