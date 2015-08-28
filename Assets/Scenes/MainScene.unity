@@ -359,7 +359,7 @@ Prefab:
     - target: {fileID: 21215970, guid: ba0382eaead3ee6499748e8353b77b43, type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f8afc3b9b05a11142a7e4977d39ef7c3,
+      objectReference: {fileID: 21300000, guid: ea07c3a002c99c74da09a480babd9596,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba0382eaead3ee6499748e8353b77b43, type: 2}
@@ -730,6 +730,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1379388870}
   - 212: {fileID: 1379388869}
+  - 95: {fileID: 1379388871}
   m_Layer: 0
   m_Name: SnailSprite
   m_TagString: Untagged
@@ -762,7 +763,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2097673953
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f8afc3b9b05a11142a7e4977d39ef7c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea07c3a002c99c74da09a480babd9596, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1379388870
 Transform:
@@ -776,6 +777,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1085587065}
   m_RootOrder: 2
+--- !u!95 &1379388871
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1379388868}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f749d1455b14d8b4c987dfa337c763fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1458572505
 GameObject:
   m_ObjectHideFlags: 0
