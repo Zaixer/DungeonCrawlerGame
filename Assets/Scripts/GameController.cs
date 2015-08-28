@@ -1,16 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {    
-    private MoveStatus _moveStatus = MoveStatus.None;
-    private ICollection<Background> _backgrounds = new List<Background>();
+    private MoveStatus _moveStatus;
+    private ICollection<Background> _backgrounds;
 
-    public void MoveLeft()
+    void Start()
+    {
+        _backgrounds = GetBackgrounds();
+    }
+
+    void Update()
+    {
+        PerformMovement();
+    }
+
+    public void StartMovingLeft()
     {
         _moveStatus = MoveStatus.Left;
     }
 
-    public void MoveRight()
+    public void StartMovingRight()
     {
         _moveStatus = MoveStatus.Right;
 
@@ -21,16 +32,18 @@ public class GameController : MonoBehaviour {
         _moveStatus = MoveStatus.None;
     }
 
-    void Start()
+    private ICollection<Background> GetBackgrounds()
     {
+        var backgrounds = new List<Background>();
         var gameObjectsWithBackground = GameObject.FindGameObjectsWithTag("Background");
         foreach (var gameObjectWithBackground in gameObjectsWithBackground)
         {
-            _backgrounds.Add(gameObjectWithBackground.GetComponent<Background>());
+            backgrounds.Add(gameObjectWithBackground.GetComponent<Background>());
         }
+        return backgrounds;
     }
 
-    void Update()
+    private void PerformMovement()
     {
         switch (_moveStatus)
         {
