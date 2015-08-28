@@ -5,6 +5,7 @@ public class CameraController : MonoBehaviour {
 
     void Start()
     {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
         ScaleCameraToShowTargetAspectRatioWithBlackBars();
     }
 
