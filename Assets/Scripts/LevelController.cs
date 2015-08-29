@@ -4,6 +4,7 @@ public class LevelController : MonoBehaviour {
     void Start () {
         SetupBackground();
         SetupPlayerUnits();
+        SetupMovementButtons();
 	}
 
     private void SetupBackground()
@@ -18,5 +19,11 @@ public class LevelController : MonoBehaviour {
     {
         var snail = Resources.Load("Units/Snail");
         Instantiate(snail);
+    }
+
+    private void SetupMovementButtons()
+    {
+        var canvas = Resources.Load("UI/MovementCanvas");
+        Instantiate(canvas);
     }
 }
