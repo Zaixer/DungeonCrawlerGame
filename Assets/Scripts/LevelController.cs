@@ -2,6 +2,7 @@
 
 public class LevelController : MonoBehaviour {
     void Start () {
+        SetupBackgroundMusic();
         SetupBackground();
         SetupPlayerUnits();
         SetupMovementButtons();
@@ -9,6 +10,12 @@ public class LevelController : MonoBehaviour {
 
     void Update()
     {
+    }
+
+    private void SetupBackgroundMusic()
+    {
+        var backgroundMusic = Resources.Load("Audio/BackgroundMusic");
+        Instantiate(backgroundMusic);
     }
 
     private void SetupBackground()
