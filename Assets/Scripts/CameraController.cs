@@ -9,6 +9,10 @@ public class CameraController : MonoBehaviour {
         ScaleCameraToShowTargetAspectRatioWithBlackBars();
     }
 
+    void Update()
+    {
+    }
+
     private void ScaleCameraToShowTargetAspectRatioWithBlackBars()
     {
         var aspectRatioOfWindow = (float)Screen.width / (float)Screen.height;

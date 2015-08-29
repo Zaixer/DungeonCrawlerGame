@@ -7,6 +7,10 @@ public class LevelController : MonoBehaviour {
         SetupMovementButtons();
 	}
 
+    void Update()
+    {
+    }
+
     private void SetupBackground()
     {
         var backgroundBottom = Resources.Load("Backgrounds/BackgroundBottom");

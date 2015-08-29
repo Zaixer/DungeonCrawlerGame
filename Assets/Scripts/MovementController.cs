@@ -5,6 +5,10 @@ public class MovementController : MonoBehaviour {
     private MoveStatus _moveStatus;
     private ICollection<Background> _backgrounds;
 
+    void Start()
+    {
+    }
+
     void Update()
     {
         PerformMovement();

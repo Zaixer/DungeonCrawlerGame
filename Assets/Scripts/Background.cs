@@ -11,6 +11,10 @@ public class Background : MonoBehaviour
         _renderer = GetComponent<Renderer>();
     }
 
+    void Update()
+    {
+    }
+
     public void MoveBackgroundLeft()
     {
         MoveBackground(-moveSpeed);
