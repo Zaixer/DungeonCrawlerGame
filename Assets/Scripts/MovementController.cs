@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {    
+public class MovementController : MonoBehaviour {
     private MoveStatus _moveStatus;
     private ICollection<Background> _backgrounds;
-
-    void Start()
-    {
-        _backgrounds = GetBackgrounds();
-    }
 
     void Update()
     {
@@ -32,19 +26,9 @@ public class GameController : MonoBehaviour {
         _moveStatus = MoveStatus.None;
     }
 
-    private ICollection<Background> GetBackgrounds()
-    {
-        var backgrounds = new List<Background>();
-        var gameObjectsWithBackground = GameObject.FindGameObjectsWithTag("Background");
-        foreach (var gameObjectWithBackground in gameObjectsWithBackground)
-        {
-            backgrounds.Add(gameObjectWithBackground.GetComponent<Background>());
-        }
-        return backgrounds;
-    }
-
     private void PerformMovement()
     {
+        LoadBackgroundsIfNotDoneAlready();
         switch (_moveStatus)
         {
             case MoveStatus.Left:
@@ -61,6 +45,19 @@ public class GameController : MonoBehaviour {
                 break;
             default:
                 break;
+        }
+    }
+
+    private void LoadBackgroundsIfNotDoneAlready()
+    {
+        if (_backgrounds == null)
+        {
+            _backgrounds = new List<Background>();
+            var gameObjectsWithBackground = GameObject.FindGameObjectsWithTag("Background");
+            foreach (var gameObjectWithBackground in gameObjectsWithBackground)
+            {
+                _backgrounds.Add(gameObjectWithBackground.GetComponent<Background>());
+            }
         }
     }
 
