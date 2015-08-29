@@ -3,13 +3,20 @@
 public class LevelController : MonoBehaviour {
     void Start () {
         SetupBackground();
+        SetupPlayerUnits();
 	}
 
     private void SetupBackground()
     {
-        var backgroundBottomQuad = Resources.Load("Backgrounds/BackgroundBottomQuad");
-        var backgroundTopQuad = Resources.Load("Backgrounds/BackgroundTopQuad");
-        Instantiate(backgroundBottomQuad);
-        Instantiate(backgroundTopQuad);
+        var backgroundBottom = Resources.Load("Backgrounds/BackgroundBottom");
+        var backgroundTop = Resources.Load("Backgrounds/BackgroundTop");
+        Instantiate(backgroundBottom);
+        Instantiate(backgroundTop);
+    }
+
+    private void SetupPlayerUnits()
+    {
+        var snail = Resources.Load("Units/Snail");
+        Instantiate(snail);
     }
 }

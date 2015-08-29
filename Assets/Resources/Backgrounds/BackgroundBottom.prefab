@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2370448}
   - 114: {fileID: 11452092}
   m_Layer: 0
-  m_Name: BackgroundBottomQuad
+  m_Name: BackgroundBottom
   m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
