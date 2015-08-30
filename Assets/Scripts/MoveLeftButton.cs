@@ -3,24 +3,24 @@ using UnityEngine.EventSystems;
 
 public class MoveLeftButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    private MovementController _movementController;
+    private GameController _gameController;
 
-    void Start ()
+    void Start()
     {
-        _movementController = FindObjectOfType<Camera>().GetComponent<MovementController>();
-	}
-	
-	void Update ()
+        _gameController = FindObjectOfType<Camera>().GetComponent<GameController>();
+    }
+
+    void Update()
     {
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        _movementController.StartMovingLeft();
+        _gameController.StartMovingLeft();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        _movementController.StopMoving();
+        _gameController.StopMoving();
     }
 }

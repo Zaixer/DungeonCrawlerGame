@@ -3,11 +3,11 @@ using UnityEngine.EventSystems;
 
 public class MoveRightButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    private MovementController _movementController;
+    private GameController _gameController;
 
     void Start()
     {
-        _movementController = FindObjectOfType<Camera>().GetComponent<MovementController>();
+        _gameController = FindObjectOfType<Camera>().GetComponent<GameController>();
     }
 
     void Update()
@@ -16,11 +16,11 @@ public class MoveRightButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        _movementController.StartMovingRight();
+        _gameController.StartMovingRight();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        _movementController.StopMoving();
+        _gameController.StopMoving();
     }
 }

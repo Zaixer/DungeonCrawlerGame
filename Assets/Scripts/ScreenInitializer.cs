@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class CameraController : MonoBehaviour {
+public class ScreenInitializer : MonoBehaviour
+{
     private const float TARGET_ASPECT_RATIO = 16f / 9f;
 
     void Start()
