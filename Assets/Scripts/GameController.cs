@@ -2,14 +2,15 @@
 
 public class GameController : MonoBehaviour
 {
-    private ContentHandler _contentHandler = new ContentHandler();
-    private Level _level = new TestLevel();
-    private Unit _playerUnit = new SnailUnit();
+    private readonly ContentHandler _contentHandler = new ContentHandler();
+    private readonly Level _level = new TestLevel();
+    private readonly Unit _playerUnit = new SnailUnit();
     private MovementDirection _currentMovementDirection;
+    private int _currentPosition;
 
     void Start()
     {
-        _contentHandler.InitializeContent(_level, _playerUnit);
+        _contentHandler.Initialize(_level, _playerUnit);
     }
 
     void Update()
@@ -17,24 +18,37 @@ public class GameController : MonoBehaviour
         PerformMovement();
     }
 
-    public void StartMovingLeft()
+    public void ChangeMovementDirection(MovementDirection newMovementDirection)
     {
-        _currentMovementDirection = MovementDirection.Left;
-    }
-
-    public void StartMovingRight()
-    {
-        _currentMovementDirection = MovementDirection.Right;
-
-    }
-
-    public void StopMoving()
-    {
-        _currentMovementDirection = MovementDirection.None;
+        _currentMovementDirection = newMovementDirection;
     }
 
     private void PerformMovement()
     {
-        _contentHandler.MoveBackground(_currentMovementDirection);
+        switch (_currentMovementDirection)
+        {
+            case MovementDirection.Left:
+                _currentPosition -= 1;
+                _contentHandler.MoveBackgrounds(_currentMovementDirection);
+                break;
+            case MovementDirection.Right:
+                _currentPosition += 1;
+                _contentHandler.MoveBackgrounds(_currentMovementDirection);
+                break;
+        }
+        if (_currentPosition == 0)
+        {
+            _currentMovementDirection = MovementDirection.None;
+            _contentHandler.UpdateEnabledMovementButtons(false, true);
+        }
+        else if (_currentPosition == _level.Length)
+        {
+            _currentMovementDirection = MovementDirection.None;
+            _contentHandler.UpdateEnabledMovementButtons(true, false);
+        }
+        else
+        {
+            _contentHandler.UpdateEnabledMovementButtons(true, true);
+        }
     }
 }

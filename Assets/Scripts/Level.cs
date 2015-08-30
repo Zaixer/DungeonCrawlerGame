@@ -3,4 +3,5 @@
     public abstract string BackgroundMusicResource { get; }
     public abstract string BackgroundBottomResource { get; }
     public abstract string BackgroundTopResource { get; }
+    public abstract int Length { get; }
 }

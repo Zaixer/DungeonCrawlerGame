@@ -23,4 +23,12 @@
             return "Backgrounds/BackgroundTop";
         }
     }
+
+    public override int Length
+    {
+        get
+        {
+            return 100;
+        }
+    }
 }

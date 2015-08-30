@@ -15,14 +15,17 @@ public class Background : MonoBehaviour
     {
     }
 
-    public void MoveBackgroundLeft()
+    public void MoveBackground(MovementDirection direction)
     {
-        MoveBackground(-moveSpeed);
-    }
-
-    public void MoveBackgroundRight()
-    {
-        MoveBackground(moveSpeed);
+        switch (direction)
+        {
+            case MovementDirection.Left:
+                MoveBackground(-moveSpeed);
+                break;
+            case MovementDirection.Right:
+                MoveBackground(moveSpeed);
+                break;
+        }
     }
 
     private void MoveBackground(float xDistance)

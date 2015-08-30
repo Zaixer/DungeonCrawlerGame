@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ContentHandler : Object
 {
     private ICollection<Background> _backgrounds;
+    private Button _moveLeftButton;
+    private Button _moveRightButton;
 
-    public void InitializeContent(Level level, Unit unit)
+    public void Initialize(Level level, Unit unit)
     {
         SetupBackgroundMusic(level);
         SetupBackground(level);
@@ -13,25 +16,23 @@ public class ContentHandler : Object
         SetupMovementButtons();
     }
 
-    public void MoveBackground(MovementDirection movementDirection)
+    public void MoveBackgrounds(MovementDirection direction)
     {
-        LoadBackgroundsIfNotDoneAlready();
-        switch (movementDirection)
+        foreach (var background in _backgrounds)
         {
-            case MovementDirection.Left:
-                foreach (var background in _backgrounds)
-                {
-                    background.MoveBackgroundLeft();
-                }
-                break;
-            case MovementDirection.Right:
-                foreach (var background in _backgrounds)
-                {
-                    background.MoveBackgroundRight();
-                }
-                break;
-            default:
-                break;
+            background.MoveBackground(direction);
+        }
+    }
+
+    public void UpdateEnabledMovementButtons(bool enableLeft, bool enableRight)
+    {
+        if (_moveLeftButton.interactable != enableLeft)
+        {
+            _moveLeftButton.interactable = enableLeft;
+        }
+        if (_moveRightButton.interactable != enableRight)
+        {
+            _moveRightButton.interactable = enableRight;
         }
     }
 
@@ -47,6 +48,12 @@ public class ContentHandler : Object
         var backgroundTop = Resources.Load(level.BackgroundTopResource);
         Instantiate(backgroundBottom);
         Instantiate(backgroundTop);
+        _backgrounds = new List<Background>();
+        var gameObjectsWithBackground = GameObject.FindGameObjectsWithTag("Background");
+        foreach (var gameObjectWithBackground in gameObjectsWithBackground)
+        {
+            _backgrounds.Add(gameObjectWithBackground.GetComponent<Background>());
+        }
     }
 
     private void SetupPlayerUnit(Unit unit)
@@ -59,18 +66,7 @@ public class ContentHandler : Object
     {
         var canvas = Resources.Load("UI/MovementCanvas");
         Instantiate(canvas);
-    }
-
-    private void LoadBackgroundsIfNotDoneAlready()
-    {
-        if (_backgrounds == null)
-        {
-            _backgrounds = new List<Background>();
-            var gameObjectsWithBackground = GameObject.FindGameObjectsWithTag("Background");
-            foreach (var gameObjectWithBackground in gameObjectsWithBackground)
-            {
-                _backgrounds.Add(gameObjectWithBackground.GetComponent<Background>());
-            }
-        }
+        _moveLeftButton = GameObject.Find("MoveLeftButton").GetComponent<Button>();
+        _moveRightButton = GameObject.Find("MoveRightButton").GetComponent<Button>();
     }
 }

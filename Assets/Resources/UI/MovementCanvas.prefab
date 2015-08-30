@@ -142,9 +142,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 179184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d3ef919ea18c44da8cd2d096250221, type: 3}
+  m_Script: {fileID: 11500000, guid: e8fe224aae9f73b469b6ad5242dcf69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementDirection: 1
 --- !u!114 &11472462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,9 +237,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 197068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 109d7d66787c22844b725cbd611bc229, type: 3}
+  m_Script: {fileID: 11500000, guid: e8fe224aae9f73b469b6ad5242dcf69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementDirection: 2
 --- !u!222 &22208492
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -353,6 +355,14 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 2bf467966ba464d4093b59c630358b01,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: moveLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementDirection
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 192822}
