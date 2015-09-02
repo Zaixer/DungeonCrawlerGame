@@ -6,7 +6,9 @@ public class MovementHandler : Object
     private readonly int _minPosition;
     private readonly int _maxPosition;
     private MovementDirection _currentMovementDirection;
-    private int _currentPosition;    
+    private int _currentPosition;
+
+    public event System.EventHandler OnMovement;
 
     public MovementHandler(ContentHandler contentHandler, int levelLength)
     {
@@ -17,16 +19,14 @@ public class MovementHandler : Object
 
     public void PerformMovement()
     {
-        switch (_currentMovementDirection)
+        if (_currentMovementDirection != MovementDirection.None)
         {
-            case MovementDirection.Left:
-                _currentPosition -= 1;
-                _contentHandler.MoveBackgrounds(_currentMovementDirection);
-                break;
-            case MovementDirection.Right:
-                _currentPosition += 1;
-                _contentHandler.MoveBackgrounds(_currentMovementDirection);
-                break;
+            _currentPosition += _currentMovementDirection == MovementDirection.Left ? -1 : 1;
+            _contentHandler.MoveBackgrounds(_currentMovementDirection);
+            if (OnMovement != null)
+            {
+                OnMovement(this, System.EventArgs.Empty);
+            }
         }
         if (_currentPosition == _minPosition)
         {
