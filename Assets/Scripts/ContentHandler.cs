@@ -8,7 +8,7 @@ public class ContentHandler : Object
     private Button _moveLeftButton;
     private Button _moveRightButton;
 
-    public void Initialize(Level level, Unit unit)
+    public void InitializeContent(Level level, Unit unit)
     {
         SetupBackgroundMusic(level);
         SetupBackground(level);
