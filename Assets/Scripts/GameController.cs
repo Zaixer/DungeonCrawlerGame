@@ -35,11 +35,11 @@ public class GameController : MonoBehaviour
 
     private void _battleHandler_OnBattleStart(object sender, System.EventArgs e)
     {
-        
+        _movementHandler.DisableMovement();
     }
 
     private void _battleHandler_OnBattleEnd(object sender, System.EventArgs e)
     {
-        
+        _movementHandler.EnableMovement();
     }
 }

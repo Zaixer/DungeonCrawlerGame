@@ -36,6 +36,11 @@ public class ContentHandler : Object
         }
     }
 
+    public void UpdateVisibleMovementButtons(bool showLeft, bool showRight)
+    {
+        throw new System.NotImplementedException();
+    }
+
     private void SetupBackgroundMusic(Level level)
     {
         var backgroundMusic = Resources.Load(level.BackgroundMusicResource);
