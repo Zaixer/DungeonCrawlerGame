@@ -3,8 +3,9 @@
 public class BattleHandler : Object
 {
     private readonly ContentHandler _contentHandler;
-    private int _checksSinceLastRandomEncounter;
     private bool _isInBattle;
+    private int _checksSinceLastRandomEncounter;
+    private int _numberOfChecksBeforeNextRandomEncounter;
 
     public event System.EventHandler OnBattleStart;
     public event System.EventHandler OnBattleEnd;
@@ -19,20 +20,27 @@ public class BattleHandler : Object
         Debug.Log(_checksSinceLastRandomEncounter);
         if (!_isInBattle)
         {
-            var shouldTriggerBattle = _checksSinceLastRandomEncounter + Random.Range(1, 100) > 200;
+            _checksSinceLastRandomEncounter++;
+            if (_numberOfChecksBeforeNextRandomEncounter == 0)
+            {
+                _numberOfChecksBeforeNextRandomEncounter = GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter();
+            }
+            var shouldTriggerBattle = _checksSinceLastRandomEncounter >= _numberOfChecksBeforeNextRandomEncounter;
             if (shouldTriggerBattle)
             {
                 _checksSinceLastRandomEncounter = 0;
+                _numberOfChecksBeforeNextRandomEncounter = 0;
                 _isInBattle = true;
                 if (OnBattleStart != null)
                 {
                     OnBattleStart(this, System.EventArgs.Empty);
                 }
             }
-            else
-            {
-                _checksSinceLastRandomEncounter++;
-            }
         }
+    }
+
+    private int GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter()
+    {
+        return 100 + Random.Range(0, 100);
     }
 }
