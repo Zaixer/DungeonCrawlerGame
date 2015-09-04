@@ -6,12 +6,12 @@ public class MovementButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 {
     public MovementDirection movementDirection;
 
-    private GameController _gameController;
+    private MovementController _movementController;
     private Button _button;
 
     void Start()
     {
-        _gameController = FindObjectOfType<Camera>().GetComponent<GameController>();
+        _movementController = FindObjectOfType<Camera>().GetComponent<MovementController>();
         _button = GetComponent<Button>();
     }
 
@@ -23,7 +23,7 @@ public class MovementButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     {
         if (_button.interactable)
         {
-            _gameController.ChangeMovementDirection(movementDirection);
+            _movementController.ChangeMovementDirection(movementDirection);
         }
     }
 
@@ -31,7 +31,7 @@ public class MovementButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     {
         if (_button.interactable)
         {
-            _gameController.ChangeMovementDirection(MovementDirection.None);
+            _movementController.ChangeMovementDirection(MovementDirection.None);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ScreenInitializer : MonoBehaviour
+public class ScreenController : MonoBehaviour
 {
     private const float TARGET_ASPECT_RATIO = 16f / 9f;
 

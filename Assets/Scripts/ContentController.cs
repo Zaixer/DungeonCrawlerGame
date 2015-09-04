@@ -2,18 +2,25 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ContentHandler : Object
+public class ContentController : MonoBehaviour
 {
+    private readonly Level _level = new TestLevel();
     private ICollection<Background> _backgrounds;
     private Button _moveLeftButton;
     private Button _moveRightButton;
 
-    public void InitializeContent(Level level, Unit unit)
+    public Level Level { get { return _level; } }
+
+    void Start()
     {
-        SetupBackgroundMusic(level);
-        SetupBackground(level);
-        SetupPlayerUnit(unit);
+        SetupBackgroundMusic(_level);
+        SetupBackground(_level);
+        SetupPlayerUnit(new SnailUnit());
         SetupMovementButtons();
+    }
+    
+    void Update()
+    {
     }
 
     public void MoveBackgrounds(MovementDirection direction)
