@@ -3,9 +3,9 @@
 public class BattleHandler : Object
 {
     private readonly ContentHandler _contentHandler;
-    private bool _isInBattle;
     private int _checksSinceLastRandomEncounter;
     private int _numberOfChecksBeforeNextRandomEncounter;
+    private State _currentState;
 
     public event System.EventHandler OnBattleStart;
     public event System.EventHandler OnBattleEnd;
@@ -17,8 +17,7 @@ public class BattleHandler : Object
 
     public void CheckForRandomEncounter()
     {
-        Debug.Log(_checksSinceLastRandomEncounter);
-        if (!_isInBattle)
+        if (_currentState == State.OutsideBattle)
         {
             _checksSinceLastRandomEncounter++;
             if (_numberOfChecksBeforeNextRandomEncounter == 0)
@@ -30,7 +29,7 @@ public class BattleHandler : Object
             {
                 _checksSinceLastRandomEncounter = 0;
                 _numberOfChecksBeforeNextRandomEncounter = 0;
-                _isInBattle = true;
+                _currentState = State.StartOfBattle;
                 if (OnBattleStart != null)
                 {
                     OnBattleStart(this, System.EventArgs.Empty);
@@ -42,5 +41,14 @@ public class BattleHandler : Object
     private int GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter()
     {
         return 100 + Random.Range(0, 100);
+    }
+
+    private enum State
+    {
+        OutsideBattle,
+        StartOfBattle,
+        PlayerTurn,
+        EnemyTurn,
+        EndOfBattle
     }
 }
