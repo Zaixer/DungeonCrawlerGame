@@ -37,12 +37,13 @@ public class MovementController : MonoBehaviour
 
     private void BattleController_OnBattleStart(object sender, System.EventArgs e)
     {
-        DisableMovement();
+        _contentController.HideMovementButtons();
+        _currentMovementDirection = MovementDirection.None;
     }
 
     private void BattleController_OnBattleEnd(object sender, System.EventArgs e)
     {
-        EnableMovement();
+        _contentController.ShowMovementButtons();
     }
 
     private void PerformMovement()
@@ -70,17 +71,5 @@ public class MovementController : MonoBehaviour
         {
             _contentController.UpdateEnabledMovementButtons(true, true);
         }
-    }
-
-    private void DisableMovement()
-    {
-        _isAbleToMove = false;
-        _contentController.UpdateVisibleMovementButtons(false, false);
-    }
-
-    private void EnableMovement()
-    {
-        _isAbleToMove = true;
-        _contentController.UpdateVisibleMovementButtons(true, true);
     }
 }

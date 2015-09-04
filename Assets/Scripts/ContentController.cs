@@ -6,6 +6,7 @@ public class ContentController : MonoBehaviour
 {
     private readonly Level _level = new TestLevel();
     private ICollection<Background> _backgrounds;
+    private GameObject _movementCanvas;
     private Button _moveLeftButton;
     private Button _moveRightButton;
 
@@ -43,23 +44,25 @@ public class ContentController : MonoBehaviour
         }
     }
 
-    public void UpdateVisibleMovementButtons(bool showLeft, bool showRight)
+    public void ShowMovementButtons()
     {
-        throw new System.NotImplementedException();
+        _movementCanvas.SetActive(true);
+    }
+
+    public void HideMovementButtons()
+    {
+        _movementCanvas.SetActive(false);
     }
 
     private void SetupBackgroundMusic(Level level)
     {
-        var backgroundMusic = Resources.Load(level.BackgroundMusicResource);
-        Instantiate(backgroundMusic);
+        Instantiate(Resources.Load(level.BackgroundMusicResource));
     }
 
     private void SetupBackground(Level level)
     {
-        var backgroundBottom = Resources.Load(level.BackgroundBottomResource);
-        var backgroundTop = Resources.Load(level.BackgroundTopResource);
-        Instantiate(backgroundBottom);
-        Instantiate(backgroundTop);
+        Instantiate(Resources.Load(level.BackgroundBottomResource));
+        Instantiate(Resources.Load(level.BackgroundTopResource));
         _backgrounds = new List<Background>();
         var gameObjectsWithBackground = GameObject.FindGameObjectsWithTag("Background");
         foreach (var gameObjectWithBackground in gameObjectsWithBackground)
@@ -70,14 +73,12 @@ public class ContentController : MonoBehaviour
 
     private void SetupPlayerUnit(Unit unit)
     {
-        var snail = Resources.Load(unit.Resource);
-        Instantiate(snail);
+        Instantiate(Resources.Load(unit.Resource));
     }
 
     private void SetupMovementButtons()
     {
-        var canvas = Resources.Load("UI/MovementCanvas");
-        Instantiate(canvas);
+        _movementCanvas = Instantiate(Resources.Load<GameObject>("UI/MovementCanvas"));
         _moveLeftButton = GameObject.Find("MoveLeftButton").GetComponent<Button>();
         _moveRightButton = GameObject.Find("MoveRightButton").GetComponent<Button>();
     }
