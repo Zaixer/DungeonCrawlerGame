@@ -16,7 +16,7 @@ public class ContentController : MonoBehaviour
     {
         SetupBackgroundMusic(_level);
         SetupBackground(_level);
-        SetupPlayerUnit(new SnailUnit());
+        SetupPlayerUnit(new KnightUnit());
         SetupMovementButtons();
     }
     
