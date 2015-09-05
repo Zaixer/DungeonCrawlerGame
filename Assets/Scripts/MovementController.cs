@@ -7,7 +7,6 @@ public class MovementController : MonoBehaviour
     private int _minPosition;
     private int _maxPosition;
     private int _currentPosition;
-    private bool _isAbleToMove;
 
     public event System.EventHandler OnMovement;
 
@@ -16,7 +15,6 @@ public class MovementController : MonoBehaviour
         _contentController = GetComponentInParent<ContentController>();
         _minPosition = 0;
         _maxPosition = _contentController.Level.Length;
-        _isAbleToMove = true;
         var battleController = GetComponentInParent<BattleController>();
         battleController.OnBattleStart += BattleController_OnBattleStart;
         battleController.OnBattleEnd += BattleController_OnBattleEnd;
@@ -24,21 +22,22 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
-        if (_isAbleToMove)
-        {
-            PerformMovement();
-        }
+        PerformMovement();
     }
 
     public void ChangeMovementDirection(MovementDirection newMovementDirection)
     {
-        _currentMovementDirection = newMovementDirection;
+        if (newMovementDirection != _currentMovementDirection)
+        {
+            _currentMovementDirection = newMovementDirection;
+            _contentController.UpdateWalkingForPlayerUnit(_currentMovementDirection != MovementDirection.None);
+        }
     }
 
     private void BattleController_OnBattleStart(object sender, System.EventArgs e)
     {
         _contentController.HideMovementButtons();
-        _currentMovementDirection = MovementDirection.None;
+        ChangeMovementDirection(MovementDirection.None);
     }
 
     private void BattleController_OnBattleEnd(object sender, System.EventArgs e)
@@ -59,13 +58,13 @@ public class MovementController : MonoBehaviour
         }
         if (_currentPosition == _minPosition)
         {
-            _currentMovementDirection = MovementDirection.None;
             _contentController.UpdateEnabledMovementButtons(false, true);
+            ChangeMovementDirection(MovementDirection.None);
         }
         else if (_currentPosition == _maxPosition)
         {
-            _currentMovementDirection = MovementDirection.None;
             _contentController.UpdateEnabledMovementButtons(true, false);
+            ChangeMovementDirection(MovementDirection.None);
         }
         else
         {

@@ -6,6 +6,7 @@ public class ContentController : MonoBehaviour
 {
     private readonly Level _level = new TestLevel();
     private ICollection<Background> _backgrounds;
+    private Animator _playerUnitAnimator;
     private AudioSource _normalMusicAudioSource;
     private AudioSource _battleMusicAudioSource;
     private GameObject _movementCanvas;
@@ -44,6 +45,11 @@ public class ContentController : MonoBehaviour
         {
             background.MoveBackground(direction);
         }
+    }
+
+    public void UpdateWalkingForPlayerUnit(bool walking)
+    {
+        _playerUnitAnimator.SetBool("Walking", walking);
     }
 
     public void UpdateEnabledMovementButtons(bool enableLeft, bool enableRight)
@@ -87,7 +93,8 @@ public class ContentController : MonoBehaviour
 
     private void SetupPlayerUnit(Unit unit)
     {
-        Instantiate(Resources.Load(unit.Resource));
+        var playerUnit = Instantiate(Resources.Load<GameObject>(unit.Resource));
+        _playerUnitAnimator = playerUnit.GetComponent<Animator>();
     }
 
     private void SetupMovementButtons()
