@@ -18,6 +18,19 @@ public class BattleController : MonoBehaviour
 
     void Update()
     {
+        switch (_currentState)
+        {
+            case State.OutsideBattle:
+                break;
+            case State.StartOfBattle:
+                break;
+            case State.PlayerTurn:
+                break;
+            case State.EnemyTurn:
+                break;
+            case State.EndOfBattle:
+                break;
+        }
     }
 
     private void MovementController_OnMovement(object sender, System.EventArgs e)
