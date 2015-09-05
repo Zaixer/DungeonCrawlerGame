@@ -59,7 +59,7 @@ public class BattleController : MonoBehaviour
 
     private int GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter()
     {
-        return 100 + Random.Range(0, 100);
+        return 200 + Random.Range(0, 200);
     }
 
     private enum State
