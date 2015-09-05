@@ -6,6 +6,8 @@ public class ContentController : MonoBehaviour
 {
     private readonly Level _level = new TestLevel();
     private ICollection<Background> _backgrounds;
+    private AudioSource _normalMusicAudioSource;
+    private AudioSource _battleMusicAudioSource;
     private GameObject _movementCanvas;
     private Button _moveLeftButton;
     private Button _moveRightButton;
@@ -14,7 +16,7 @@ public class ContentController : MonoBehaviour
 
     void Start()
     {
-        SetupBackgroundMusic(_level);
+        SetupMusic(_level);
         SetupBackground(_level);
         SetupPlayerUnit(new KnightUnit());
         SetupMovementButtons();
@@ -22,6 +24,18 @@ public class ContentController : MonoBehaviour
     
     void Update()
     {
+    }
+
+    public void SwitchToBattleMusic()
+    {
+        _normalMusicAudioSource.Stop();
+        _battleMusicAudioSource.Play();
+    }
+
+    public void SwitchToNormalMusic()
+    {
+        _battleMusicAudioSource.Stop();
+        _normalMusicAudioSource.Play();        
     }
 
     public void MoveBackgrounds(MovementDirection direction)
@@ -54,21 +68,21 @@ public class ContentController : MonoBehaviour
         _movementCanvas.SetActive(false);
     }
 
-    private void SetupBackgroundMusic(Level level)
+    private void SetupMusic(Level level)
     {
-        Instantiate(Resources.Load(level.BackgroundMusicResource));
+        var normalMusic = Instantiate(Resources.Load<GameObject>(level.MusicNormalResource));
+        var battleMusic = Instantiate(Resources.Load<GameObject>(level.MusicBattleResource));
+        _normalMusicAudioSource = normalMusic.GetComponent<AudioSource>();
+        _battleMusicAudioSource = battleMusic.GetComponent<AudioSource>();
     }
 
     private void SetupBackground(Level level)
     {
-        Instantiate(Resources.Load(level.BackgroundBottomResource));
-        Instantiate(Resources.Load(level.BackgroundTopResource));
+        var bottom = Instantiate(Resources.Load<GameObject>(level.BackgroundBottomResource));
+        var top = Instantiate(Resources.Load<GameObject>(level.BackgroundTopResource));
         _backgrounds = new List<Background>();
-        var gameObjectsWithBackground = GameObject.FindGameObjectsWithTag("Background");
-        foreach (var gameObjectWithBackground in gameObjectsWithBackground)
-        {
-            _backgrounds.Add(gameObjectWithBackground.GetComponent<Background>());
-        }
+        _backgrounds.Add(bottom.GetComponent<Background>());
+        _backgrounds.Add(top.GetComponent<Background>());
     }
 
     private void SetupPlayerUnit(Unit unit)

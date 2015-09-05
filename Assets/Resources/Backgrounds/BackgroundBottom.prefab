@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11452092}
   m_Layer: 0
   m_Name: BackgroundBottom
-  m_TagString: Background
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,6 +96,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: moveSpeed
       value: .00200000009
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

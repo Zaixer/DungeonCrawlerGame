@@ -2,6 +2,7 @@
 
 public class BattleController : MonoBehaviour
 {
+    private ContentController _contentController;
     private State _currentState;
     private int _checksSinceLastRandomEncounter;
     private int _numberOfChecksBeforeNextRandomEncounter;
@@ -11,6 +12,7 @@ public class BattleController : MonoBehaviour
 
     void Start()
     {
+        _contentController = GetComponentInParent<ContentController>();
         _numberOfChecksBeforeNextRandomEncounter = GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter();
         var movementController = GetComponentInParent<MovementController>();
         movementController.OnMovement += MovementController_OnMovement;
@@ -47,6 +49,7 @@ public class BattleController : MonoBehaviour
             _currentState = State.StartOfBattle;
             _checksSinceLastRandomEncounter = 0;
             _numberOfChecksBeforeNextRandomEncounter = GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter();
+            _contentController.SwitchToBattleMusic();
             if (OnBattleStart != null)
             {
                 OnBattleStart(this, System.EventArgs.Empty);

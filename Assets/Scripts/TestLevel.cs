@@ -1,10 +1,18 @@
 ﻿public class TestLevel : Level
 {
-    public override string BackgroundMusicResource
+    public override string MusicNormalResource
     {
         get
         {
-            return "Audio/BackgroundMusic";
+            return "Audio/MusicNormal";
+        }
+    }
+
+    public override string MusicBattleResource
+    {
+        get
+        {
+            return "Audio/MusicBattle";
         }
     }
 
