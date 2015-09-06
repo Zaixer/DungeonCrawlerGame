@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: af74efae3f917e1439e905aa33ea451c
-timeCreated: 1441457208
+guid: dc7e8eec9b9e03e47a3a2634eb8a7ec0
+timeCreated: 1441568686
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,6 +16,10 @@ TextureImporter:
     21300018: Knight_9
     21300020: Knight_10
     21300022: Knight_11
+    21300024: Knight_12
+    21300026: Knight_13
+    21300028: Knight_14
+    21300030: Knight_15
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -176,6 +180,46 @@ TextureImporter:
         serializedVersion: 2
         x: 270
         y: 90
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Knight_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Knight_13
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 0
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Knight_14
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Knight_15
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 0
         width: 90
         height: 90
       alignment: 0
