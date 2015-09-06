@@ -35,11 +35,6 @@ public class BattleController : MonoBehaviour
         }
     }
 
-    private void MovementController_OnMovement(object sender, System.EventArgs e)
-    {
-        CheckForRandomEncounter();
-    }
-
     public void CheckForRandomEncounter()
     {
         _checksSinceLastRandomEncounter++;
