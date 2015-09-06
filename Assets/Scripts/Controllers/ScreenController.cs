@@ -2,16 +2,19 @@
 
 public class ScreenController : MonoBehaviour
 {
+    public static ScreenController Instance;
+
     private const float TARGET_ASPECT_RATIO = 16f / 9f;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         ScaleCameraToShowTargetAspectRatioWithBlackBars();
-    }
-
-    void Update()
-    {
     }
 
     private void ScaleCameraToShowTargetAspectRatioWithBlackBars()

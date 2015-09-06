@@ -4,26 +4,20 @@ using UnityEngine.UI;
 
 public class MovementButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public MovementDirection movementDirection;
-
-    private MovementController _movementController;
+    public MovementDirection MovementDirection;
+    
     private Button _button;
 
     void Start()
     {
-        _movementController = FindObjectOfType<Camera>().GetComponent<MovementController>();
         _button = GetComponent<Button>();
-    }
-
-    void Update()
-    {
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         if (_button.interactable)
         {
-            _movementController.ChangeMovementDirection(movementDirection);
+            MovementController.Instance.ChangeMovementDirection(MovementDirection);
         }
     }
 
@@ -31,7 +25,7 @@ public class MovementButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     {
         if (_button.interactable)
         {
-            _movementController.ChangeMovementDirection(MovementDirection.None);
+            MovementController.Instance.ChangeMovementDirection(MovementDirection.None);
         }
     }
 }

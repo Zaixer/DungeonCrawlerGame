@@ -2,20 +2,20 @@
 
 public class BattleController : MonoBehaviour
 {
-    private ContentController _contentController;
+    public static BattleController Instance;
+
     private State _currentState;
     private int _checksSinceLastRandomEncounter;
     private int _numberOfChecksBeforeNextRandomEncounter;
 
-    public event System.EventHandler OnBattleStart;
-    public event System.EventHandler OnBattleEnd;
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
-        _contentController = GetComponentInParent<ContentController>();
         _numberOfChecksBeforeNextRandomEncounter = GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter();
-        var movementController = GetComponentInParent<MovementController>();
-        movementController.OnMovement += MovementController_OnMovement;
     }
 
     void Update()
@@ -40,7 +40,7 @@ public class BattleController : MonoBehaviour
         CheckForRandomEncounter();
     }
 
-    private void CheckForRandomEncounter()
+    public void CheckForRandomEncounter()
     {
         _checksSinceLastRandomEncounter++;
         var shouldTriggerBattle = _checksSinceLastRandomEncounter >= _numberOfChecksBeforeNextRandomEncounter;
@@ -49,11 +49,8 @@ public class BattleController : MonoBehaviour
             _currentState = State.StartOfBattle;
             _checksSinceLastRandomEncounter = 0;
             _numberOfChecksBeforeNextRandomEncounter = GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter();
-            _contentController.SwitchToBattleMusic();
-            if (OnBattleStart != null)
-            {
-                OnBattleStart(this, System.EventArgs.Empty);
-            }
+            SoundController.Instance.SwitchToBattleMusic();
+            MovementController.Instance.DisableMovement();
         }
     }
 

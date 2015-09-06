@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fe224aae9f73b469b6ad5242dcf69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementDirection: 1
+  MovementDirection: 1
 --- !u!114 &11472462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fe224aae9f73b469b6ad5242dcf69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementDirection: 2
+  MovementDirection: 2
 --- !u!222 &22208492
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -361,6 +361,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: movementDirection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MovementDirection
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
