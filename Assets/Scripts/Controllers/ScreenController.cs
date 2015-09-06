@@ -9,11 +9,13 @@ public class ScreenController : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 30;
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
 
     void Start()
     {
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
         ScaleCameraToShowTargetAspectRatioWithBlackBars();
     }
 
