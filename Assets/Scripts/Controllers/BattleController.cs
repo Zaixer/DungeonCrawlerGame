@@ -46,6 +46,7 @@ public class BattleController : MonoBehaviour
             _numberOfChecksBeforeNextRandomEncounter = GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter();
             SoundController.Instance.SwitchToBattleMusic();
             MovementController.Instance.DisableMovement();
+            EnemyUnitsController.Instance.DropInNewEnemyUnit();
         }
     }
 
