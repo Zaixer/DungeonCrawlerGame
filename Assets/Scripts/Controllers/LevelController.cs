@@ -11,4 +11,9 @@ public class LevelController : MonoBehaviour
     {
         Instance = this;
     }
+
+    void Start()
+    {
+        Instantiate(Resources.Load<GameObject>("UI/MenuBackground"));
+    }
 }
