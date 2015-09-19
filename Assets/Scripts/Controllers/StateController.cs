@@ -19,7 +19,6 @@ public class StateController : MonoBehaviour
 
     void Start()
     {
-        CurrentLevel = new TestLevel();
-        Application.LoadLevel("Level");
+        Application.LoadLevel("MainMenu");
     }
 }
