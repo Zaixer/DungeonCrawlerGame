@@ -14,8 +14,8 @@ public class SoundController : MonoBehaviour
 
     void Start()
     {
-        var normalMusic = Instantiate(Resources.Load<GameObject>(LevelController.Instance.CurrentLevel.MusicNormalResource));
-        var battleMusic = Instantiate(Resources.Load<GameObject>(LevelController.Instance.CurrentLevel.MusicBattleResource));
+        var normalMusic = Instantiate(Resources.Load<GameObject>(StateController.Instance.CurrentLevel.MusicNormalResource));
+        var battleMusic = Instantiate(Resources.Load<GameObject>(StateController.Instance.CurrentLevel.MusicBattleResource));
         _normalMusicAudioSource = normalMusic.GetComponent<AudioSource>();
         _battleMusicAudioSource = battleMusic.GetComponent<AudioSource>();
     }

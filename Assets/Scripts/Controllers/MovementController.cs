@@ -22,7 +22,7 @@ public class MovementController : MonoBehaviour
     void Start()
     {
         _minPosition = 0;
-        _maxPosition = LevelController.Instance.CurrentLevel.Length;
+        _maxPosition = StateController.Instance.CurrentLevel.Length;
         _movementCanvas = Instantiate(Resources.Load<GameObject>("UI/MovementCanvas"));
         _moveLeftButton = GameObject.Find("MoveLeftButton").GetComponent<Button>();
         _moveRightButton = GameObject.Find("MoveRightButton").GetComponent<Button>();

@@ -14,8 +14,8 @@ public class BackgroundController : MonoBehaviour
     
     void Start()
     {
-        var bottom = Instantiate(Resources.Load<GameObject>(LevelController.Instance.CurrentLevel.BackgroundBottomResource));
-        var top = Instantiate(Resources.Load<GameObject>(LevelController.Instance.CurrentLevel.BackgroundTopResource));
+        var bottom = Instantiate(Resources.Load<GameObject>(StateController.Instance.CurrentLevel.BackgroundBottomResource));
+        var top = Instantiate(Resources.Load<GameObject>(StateController.Instance.CurrentLevel.BackgroundTopResource));
         _backgrounds = new List<Background>();
         _backgrounds.Add(bottom.GetComponent<Background>());
         _backgrounds.Add(top.GetComponent<Background>());
