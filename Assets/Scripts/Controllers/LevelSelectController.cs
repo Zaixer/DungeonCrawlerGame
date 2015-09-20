@@ -9,5 +9,8 @@ public class LevelSelectController : MonoBehaviour
         Instance = this;
     }
 
-    // TODO: prefabs
+    void Start()
+    {
+        Instantiate(Resources.Load<GameObject>("UI/LevelSelectCanvas"));
+    }
 }
