@@ -4,7 +4,8 @@ using UnityEngine.EventSystems;
 public class LevelSelectButton : MonoBehaviour, IPointerClickHandler
 {
     public LevelSelection LevelSelection;
-
+    public GameObject LoadingImage;
+    
     public void OnPointerClick(PointerEventData eventData)
     {
         switch (LevelSelection)
@@ -13,7 +14,7 @@ public class LevelSelectButton : MonoBehaviour, IPointerClickHandler
                 StateController.Instance.CurrentLevel = new TestLevel();
                 break;
         }
-        // TODO: loading overlay
+        LoadingImage.SetActive(true);
         Application.LoadLevel("Level");
     }
 }
