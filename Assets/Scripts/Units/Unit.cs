@@ -1,4 +1,6 @@
-﻿public abstract class Unit
+﻿using UnityEngine;
+
+public abstract class Unit : MonoBehaviour
 {
     public abstract string Resource { get; }
     public abstract int MaxHealth { get; }
@@ -9,9 +11,12 @@
 
     private int _currentHealth;
 
-    public Unit()
+    void Start()
     {
         _currentHealth = MaxHealth;
+        var healthBar = Instantiate(Resources.Load<GameObject>("UI/HealthBarCanvas"));
+        healthBar.transform.parent = gameObject.transform;
+        healthBar.transform.position = gameObject.transform.position;
     }
     
     public void Damage(int amount)

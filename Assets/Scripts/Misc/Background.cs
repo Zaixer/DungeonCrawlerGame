@@ -11,10 +11,6 @@ public class Background : MonoBehaviour
         _renderer = GetComponent<Renderer>();
     }
 
-    void Update()
-    {
-    }
-
     public void MoveBackground(MovementDirection direction)
     {
         switch (direction)
