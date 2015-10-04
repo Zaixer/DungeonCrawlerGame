@@ -5,6 +5,7 @@
     public abstract int AttackDamage { get; }
     public bool IsAlive { get { return _currentHealth > 0; } }
     public int CurrentHealth { get { return _currentHealth; } }
+    public float CurrentHealthPercentage { get { return (float)_currentHealth / MaxHealth ; } }
 
     private int _currentHealth;
 

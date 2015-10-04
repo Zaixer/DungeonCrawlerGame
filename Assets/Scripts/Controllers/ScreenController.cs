@@ -18,7 +18,7 @@ public class ScreenController : MonoBehaviour
 
     private void ScaleCameraToShowTargetAspectRatioWithBlackBars()
     {
-        var aspectRatioOfWindow = (float)Screen.width / (float)Screen.height;
+        var aspectRatioOfWindow = (float)Screen.width / Screen.height;
         var camera = GetComponent<Camera>();
         var cameraRect = camera.rect;
         if (aspectRatioOfWindow < TARGET_ASPECT_RATIO)
