@@ -8,18 +8,21 @@ public abstract class Unit : MonoBehaviour
     public bool IsAlive { get { return _currentHealth > 0; } }
     public int CurrentHealth { get { return _currentHealth; } }
     public float CurrentHealthPercentage { get { return (float)_currentHealth / MaxHealth ; } }
-
-    private int _currentHealth;
+    
+    private int _currentHealth;    
 
     void Start()
     {
         _currentHealth = MaxHealth;
         var healthBar = Instantiate(Resources.Load<GameObject>("UI/HealthBarCanvas"));
-        healthBar.transform.parent = gameObject.transform;
-        healthBar.transform.position = gameObject.transform.position;
+        var healthBarTransform = healthBar.transform;
+        var unitTransform = gameObject.transform;
+        var unitBounds = gameObject.GetComponent<Renderer>().bounds;
+        healthBarTransform.SetParent(unitTransform);
+        healthBarTransform.position = new Vector3(unitBounds.center.x, unitBounds.center.y + unitBounds.size.y / 2);
     }
     
-    public void Damage(int amount)
+    public void ApplyDamage(int amount)
     {
         _currentHealth -= amount;
         if (_currentHealth < 0)
@@ -28,7 +31,7 @@ public abstract class Unit : MonoBehaviour
         }
     }
 
-    public void Heal(int amount)
+    public void ApplyHeal(int amount)
     {
         _currentHealth += amount;
         if (_currentHealth > MaxHealth)
