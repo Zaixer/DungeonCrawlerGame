@@ -22,9 +22,13 @@ public class BattleController : MonoBehaviour
                 break;
             case State.StartOfBattle:
                 break;
-            case State.PlayerTurn:
+            case State.PlayerChoice:
                 break;
-            case State.EnemyTurn:
+            case State.PlayerAnimation:
+                break;
+            case State.EnemyChoice:
+                break;
+            case State.EnemyAnimation:
                 break;
             case State.EndOfBattle:
                 EndBattle();
@@ -63,8 +67,10 @@ public class BattleController : MonoBehaviour
     {
         OutsideBattle,
         StartOfBattle,
-        PlayerTurn,
-        EnemyTurn,
+        PlayerChoice,
+        PlayerAnimation,
+        EnemyChoice,
+        EnemyAnimation,
         EndOfBattle
     }
 }
