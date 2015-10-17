@@ -11,10 +11,6 @@ public class BattleController : MonoBehaviour
     void Awake()
     {
         Instance = this;
-    }
-
-    void Start()
-    {
         _numberOfChecksBeforeNextRandomEncounter = GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter();
     }
 
@@ -31,6 +27,7 @@ public class BattleController : MonoBehaviour
             case State.EnemyTurn:
                 break;
             case State.EndOfBattle:
+                EndBattle();
                 break;
         }
     }
@@ -42,12 +39,19 @@ public class BattleController : MonoBehaviour
         if (shouldTriggerBattle)
         {
             _currentState = State.StartOfBattle;
-            _checksSinceLastRandomEncounter = 0;
-            _numberOfChecksBeforeNextRandomEncounter = GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter();
             SoundController.Instance.SwitchToBattleMusic();
             MovementController.Instance.DisableMovement();
-            EnemyUnitsController.Instance.DropInNewEnemyUnit();
+            EnemyUnitsController.Instance.StartDropInOfNewEnemyUnit();
         }
+    }
+
+    private void EndBattle()
+    {
+        _currentState = State.OutsideBattle;
+        _checksSinceLastRandomEncounter = 0;
+        _numberOfChecksBeforeNextRandomEncounter = GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter();
+        SoundController.Instance.SwitchToNormalMusic();
+        MovementController.Instance.EnableMovement();
     }
 
     private int GetNewRandomNumberForNumberOfChecksBeforeNextRandomEncounter()

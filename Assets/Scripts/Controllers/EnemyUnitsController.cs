@@ -19,24 +19,34 @@ public class EnemyUnitsController : MonoBehaviour
     
     void Update()
     {
-        if (_currentState == State.DroppingInEnemyUnit)
+        switch (_currentState)
         {
-            if (_enemyUnitTransform.position.y <= TARGET_Y_POSITION)
-            {
-                _currentState = State.None;
-            }
-            else
-            {
-                _enemyUnitTransform.position = new Vector3(_enemyUnitTransform.position.x, _enemyUnitTransform.position.y - DROP_SPEED);
-            }
+            case State.None:
+                break;
+            case State.DroppingInEnemyUnit:
+                ContinueDropInOfNewEnemyUnit();
+                break;
         }
     }
 
-    public void DropInNewEnemyUnit()
+    public void StartDropInOfNewEnemyUnit()
     {
         _enemyUnit = (GameObject)Instantiate(Resources.Load(new RabbitUnit().Resource), new Vector3(START_X_POSITION, START_Y_POSITION), Quaternion.identity);
         _enemyUnitTransform = _enemyUnit.transform;
         _currentState = State.DroppingInEnemyUnit;
+    }
+
+    private void ContinueDropInOfNewEnemyUnit()
+    {
+        var hasReachedTargetPosition = _enemyUnitTransform.position.y <= TARGET_Y_POSITION;
+        if (hasReachedTargetPosition)
+        {
+            _currentState = State.None;
+        }
+        else
+        {
+            _enemyUnitTransform.position = new Vector3(_enemyUnitTransform.position.x, _enemyUnitTransform.position.y - DROP_SPEED);
+        }
     }
 
     private enum State
